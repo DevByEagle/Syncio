@@ -9,6 +9,7 @@ typedef unsigned long u32;
 typedef unsigned long long u64;
 
 #ifdef __cplusplus
+#include <iostream>
 namespace Syncio {
     template <typename T>
     void TypeLine(const T& value) {
