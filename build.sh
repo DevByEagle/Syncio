@@ -12,11 +12,11 @@ FILENAME="$1"
 case "$FILENAME" in
     *.c)
         echo "Compiling C file: $FILENAME"
-        gcc "$FILENAME" -o Nexium.exe
+        gcc "$FILENAME" -o Syncio.exe
         ;;
     *.cpp | *.c++)
         echo "Compiling C++ file: $FILENAME"
-        g++ "$FILENAME" -o Nexium.exe
+        g++ "$FILENAME" -o Syncio.exe
         ;;
     *)
         echo "Error: '$FILENAME' is not a C or C++ file."
