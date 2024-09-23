@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: |
-        chmod +x build.sh
-        ./build.sh main.cpp
+      run: gcc build.c -o build.out
+    - name: Build Project
+      run: ./build.out
     - name: Run
       run: ./Syncio.exe
