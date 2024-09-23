@@ -18,4 +18,4 @@ jobs:
         chmod +x build.sh
         ./build.sh main.cpp
     - name: Run
-      run: ./Syncio
+      run: ./Syncio.exe
