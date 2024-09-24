@@ -28,3 +28,21 @@ jobs:
       run: ./build.out
     - name: Run
       run: ./Syncio.exe
+
+  build-windows:
+    name: Windows Build
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up MSVC
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: 'latest'
+
+      - name: Build
+         run: cl /Fe:build.exe build.c
+      - name: Run 
+        run: build.exe
