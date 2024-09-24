@@ -1,7 +1,7 @@
 name: Feature Request
 description: Submit a feature request or improvement.
 title: "[Feature Request]: "
-labels: "idea"
+labels: ["idea"]
 assignees: []
 
 body:
@@ -9,3 +9,48 @@ body:
     attributes:
       value: |
         Thank you for suggesting a new feature! Please provide as much detail as possible so we can consider your request.
+
+  - type: input
+    id: summary
+    attributes:
+      label: "Feature Summary"
+      description: "Provide a concise description of the feature you'd like to see."
+      placeholder: "e.g., Add dark mode support"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Feature Description"
+      description: "Describe the feature in detail. How will it benefit users? What problem does it solve?"
+      placeholder: "Please explain the feature and its use case."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives Considered"
+      description: "Have you considered any alternatives? If so, please describe them."
+      placeholder: "e.g., I considered X, but Y would be better because..."
+    validations:
+      required: false
+
+  - type: input
+    id: impact
+    attributes:
+      label: "Who will benefit?"
+      description: "Who is affected by this feature? (e.g., developers, users, administrators)"
+      placeholder: "e.g., End-users, developers"
+    validations:
+      required: false
+
+  - type: input
+    id: additional_context
+    attributes:
+      label: "Additional Context"
+      description: "Any other information or links that might be helpful."
+      placeholder: "e.g., Links to relevant documentation or examples"
+    validations:
+      required: false
