@@ -42,7 +42,6 @@ static CBuildConfig cbuild_default_config(const char **source_files, size_t num_
     return config;
 }
 
-// Function to add additional flags
 static void cbuild_add_flags(CBuildConfig *config, const char *flags) {
     size_t current_length = strlen(config->flags);
     size_t new_length = current_length + strlen(flags) + 1;
@@ -53,7 +52,6 @@ static void cbuild_add_flags(CBuildConfig *config, const char *flags) {
     config->flags = new_flags;
 }
 
-// Function to add libraries
 static void cbuild_add_libs(CBuildConfig *config, const char *libs) {
     size_t current_length = strlen(config->libs);
     size_t new_length = current_length + strlen(libs) + 1;
@@ -90,7 +88,6 @@ static void cbuild_run(const CBuildConfig *config) {
     }
 }
 
-// Clean up any dynamic memory allocations (if used)
 static void cbuild_cleanup(CBuildConfig *config) {
     free((void *)config->flags);
     free((void *)config->libs);
