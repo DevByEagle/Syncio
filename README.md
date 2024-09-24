@@ -7,3 +7,10 @@
 
 <!--## Features
 - -->
+
+## Libarays
+
+| Name | Version |
+| :--- | :--- |
+| [CBuild](https://github.com/DevByEagle/CBuild) |  v1.0.0 |
+| [StringC](https://github.com/DevByEagle/StringC) | N/A |
