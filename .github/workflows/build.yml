@@ -43,6 +43,6 @@ jobs:
           vs-version: 'latest'
 
       - name: Build
-         run: cl /Fe:build.exe build.c
+         run: cl /EHsc /W4 /Fe:build.exe build.c
       - name: Run 
         run: build.exe
