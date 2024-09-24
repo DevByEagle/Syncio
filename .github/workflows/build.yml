@@ -1,10 +1,19 @@
 name: Build Task
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+    paths-ignore:
+      - README.md
+      - .github/**
+      - '!.github/workflows/build.yml'
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - README.md
+      - .github/**
+      - '!.github/workflows/build.yml'
 
 jobs:
   build-linux:
