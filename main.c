@@ -2,7 +2,8 @@
 #include "Syncio/stringc.c"
 
 int main() {
-    char* str = tostring(10);
-    printf("%s\n", str);
+    StringC str = strinit("Hello, ");
+    join(&str, "World!");
+    ptrstr(&str);
     return 0;
 }
