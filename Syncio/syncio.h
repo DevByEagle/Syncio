@@ -5,10 +5,10 @@
 
 #ifdef __cplusplus
 namespace Syncio {
-    
+
 }
 #else
-#error "Syncio Dose not support C"
+
 #endif
 
 #endif // SYNCIO_H
