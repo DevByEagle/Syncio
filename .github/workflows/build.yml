@@ -28,22 +28,3 @@ jobs:
       run: ./build.out
     - name: Run
       run: ./Syncio.exe
-
-  build-windows:
-    name: Windows Build
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up MSVC
-        uses: microsoft/setup-msbuild@v1.1
-        with:
-          vs-version: 'latest'
-      - name: Add MSVC to PATH
-        run: set PATH=%PATH%;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\x64
-        - name: Build
-        run: cl /EHsc /W4 /Fe:build.exe build.c
-        - name: Run 
-        run: build.exe
