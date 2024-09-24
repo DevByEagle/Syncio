@@ -1,0 +1,11 @@
+name: Feature Request
+description: Submit a feature request or improvement.
+title: "[Feature Request]: "
+labels: "idea"
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide as much detail as possible so we can consider your request.
