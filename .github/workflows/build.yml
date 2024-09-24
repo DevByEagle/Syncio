@@ -42,7 +42,11 @@ jobs:
         with:
           vs-version: 'latest'
 
-      - name: Build
+      - name: Add MSVC to PATH
+        run: set PATH=%PATH%;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\x64
+      
+        - name: Build
         run: cl /EHsc /W4 /Fe:build.exe build.c
-      - name: Run 
+      
+        - name: Run 
         run: build.exe
