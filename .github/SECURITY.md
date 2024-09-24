@@ -2,20 +2,32 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+The following table outlines the currently supported versions of the library and their respective status:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.x     | :white_check_mark:  |
+| 0.x     | :x:                |
+
+If a version is not listed here, it is considered outdated and may no longer receive security updates.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability in this library, please follow the steps below to responsibly disclose it:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **Do not open public issues or pull requests** related to security vulnerabilities, as this could expose the vulnerability to others before it is patched.
+
+## Vulnerability Handling Process
+
+Upon receiving a vulnerability report, the following steps will be taken:
+
+1. **Triage**: The report will be reviewed to confirm whether it is a valid security issue.
+2. **Fix**: If valid, a fix will be developed and tested to address the issue.
+3. **Release**: A security patch will be released in a new version, and users will be notified via a security advisory.
+4. **Acknowledgment**: With your consent, we will publicly acknowledge your contribution to keeping the project secure.
+
+## Security Patch Schedule
+
+Security patches will be released as soon as possible after vulnerabilities are identified. We will prioritize severe issues and ensure they are patched immediately. Minor vulnerabilities may be scheduled for a regular update.
+
+Thank you for helping us keep this project secure!
