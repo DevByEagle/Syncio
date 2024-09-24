@@ -1,9 +1,7 @@
 #include "Syncio/syncio.h"
-#include "Syncio/stringc.c"
 
 int main() {
-    StringC str = strinit("Hello, ");
-    join(&str, "World!");
-    ptrstr(&str);
+    FILE* file = fload("log.log", "wb");
+    fprintf(file, "Info");
     return 0;
 }
