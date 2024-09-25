@@ -7,7 +7,8 @@
 
 #ifdef __cplusplus
 namespace Syncio {
-
+    int tonumber(const char* str) {}
+    char* tostring(int num) {}
 }
 #else
 FILE* fload(const char* filename, const char* mode) {
