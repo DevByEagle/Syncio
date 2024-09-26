@@ -3,8 +3,13 @@
 #ifdef __cplusplus
 namespace Syncio {
     typedef unsigned char Uint8_t;
-    
+    typedef unsigned short Uint16_t;
+    typedef unsigned long Uint32_t;
+    typedef unsigned long long Uint64_t;
 }
-#endif
-
+#else
 typedef unsigned char Uint8_t;
+typedef unsigned short Uint16_t;
+typedef unsigned long Uint32_t;
+typedef unsigned long long Uint64_t;
+#endif
