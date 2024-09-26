@@ -1,6 +1,10 @@
 #pragma once
 
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
-typedef unsigned long long u64;
+#ifdef __cplusplus
+namespace Syncio {
+    typedef unsigned char Uint8_t;
+    
+}
+#endif
+
+typedef unsigned char Uint8_t;
