@@ -82,9 +82,9 @@ static void cbuild_run(const CBuildConfig *config) {
     // Execute the command
     int result = system(command);
     if (result == 0) {
-        printf("Build successful: %s\n", config->output_name);
+        printf("[INFO] Build Successful: %s\n", config->output_name);
     } else {
-        printf("Build failed with error code: %d\n", result);
+        printf("[ERROR] Build failed with error code: %d\n", result);
     }
 }
 
