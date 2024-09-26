@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 
 // Detect OS
@@ -42,13 +43,37 @@ static CBuildConfig cbuild_default_config(const char **source_files, size_t num_
     return config;
 }
 
-static void cbuild_add_flags(CBuildConfig *config, const char *flags) {
+static void cbuild_add_flags(CBuildConfig *config, ...) {
     size_t current_length = strlen(config->flags);
-    size_t new_length = current_length + strlen(flags) + 1;
     
-    char *new_flags = (char*)malloc(new_length);
-    snprintf(new_flags, new_length, "%s %s", config->flags, flags);
-    
+    // Initialize va_list to handle variable arguments
+    va_list args;
+    va_start(args, config);
+
+    // Calculate the total length of all new flags
+    size_t new_length = current_length;
+    const char *flag = va_arg(args, const char*);
+    while (flag != NULL) {
+        new_length += strlen(flag) + 1; // +1 for the space separator
+        flag = va_arg(args, const char*);
+    }
+    va_end(args);
+
+    // Allocate memory for the new flags
+    char *new_flags = (char*)malloc(new_length + 1);
+    snprintf(new_flags, new_length + 1, "%s", config->flags);
+
+    // Add each new flag to the configuration
+    va_start(args, config);
+    flag = va_arg(args, const char*);
+    while (flag != NULL) {
+        strncat(new_flags, " ", new_length - strlen(new_flags));
+        strncat(new_flags, flag, new_length - strlen(new_flags));
+        flag = va_arg(args, const char*);
+    }
+    va_end(args);
+
+    // Set the new flags in the configuration
     config->flags = new_flags;
 }
 
