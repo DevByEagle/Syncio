@@ -14,11 +14,11 @@ It offers a lightweight cross-platform solution for string manipulation.
 
 ## Features
 
-Cross-Language compatibility: this library can be utilized in both C and C++.
+- Cross-Language compatibility: this library can be utilized in both C and C++.
 
-String Handling: This library provides a simple and convenient way to manipulate strings.
+- String Handling: This library provides a simple and convenient way to manipulate strings.
 
-Performance: This is a lightweight library designed to efficiently perform operations on strings.
+- Performance: This is a lightweight library designed to efficiently perform operations on strings.
 
 ## Prerequisites
 
