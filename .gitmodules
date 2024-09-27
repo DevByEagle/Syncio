@@ -1,0 +1,3 @@
+[submodule "Syncio/libs/llvm"]
+   path = Syncio/libs/llvm
+   url = https://github.com/llvm/llvm-project.git
