@@ -28,6 +28,8 @@ Before you begin, ensure you have the following installed:
 | :--- | :--- |
 | **GCC** | *lastes* |
 | **MSVC** | *lastes* |
+| **OpenGL** | *lastes* |
+| **GLFW** | *lastes* |
 
 ## Methods
 
