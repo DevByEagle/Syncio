@@ -17,28 +17,47 @@
 
 #ifdef __cplusplus
 namespace Syncio {
-    char* tostring(int num) {
-        char* str = (char*)malloc(12 * sizeof(char));
-        if (str == NULL) {
-            return NULL; // Handle memory allocation failure
-        }
 
-        sprintf(str, "%d", num);
-        return str;
-    }
-    int tonumber(const char* str) { return atoi(str); }
 }
 #else
-char* tostring(int num) {
-     char* str = (char*)malloc(12 * sizeof(char));
-        if (str == NULL) {
-            return NULL; // Handle memory allocation failure
-        }
+char* fload(const char* filename, size_t* outSize) {
+    FILE* file = fopen(filename, "rb");
+    if (!file) {
+        perror("Failed to open file");
+        return NULL;
+    }
 
-        sprintf(str, "%d", num);
-        return str;
+    // Seek to the end of the file to determine the size
+    fseek(file, 0, SEEK_END);
+    long fileSize = ftell(file);
+    fseek(file, 0, SEEK_SET); // Go back to the beginning
+
+    // Allocate memory for the file contents
+    char* buffer = (char*)malloc(fileSize + 1); // +1 for null terminator
+    if (!buffer) {
+        perror("Failed to allocate memory");
+        fclose(file);
+        return NULL;
+    }
+
+    // Read the file into the buffer
+    size_t bytesRead = fread(buffer, 1, fileSize, file);
+    if (bytesRead != fileSize) {
+        perror("Failed to read file");
+        free(buffer);
+        fclose(file);
+        return NULL;
+    }
+
+    buffer[bytesRead] = '\0'; // Null-terminate the string
+    fclose(file);
+
+    if (outSize) {
+        *outSize = bytesRead; // Return the size if requested
+    }
+    
+    return buffer;
 }
-int tonumber(const char* str) { return atoi(str); }
 #endif
 
 #endif // SYNCIO_H
