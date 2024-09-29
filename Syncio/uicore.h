@@ -1,12 +1,12 @@
-#ifndef SYNCIO_UICORE_H
-#define SYNCIO_UICORE_H
+#ifndef UICORE_H
+#define UICORE_H
 
 #ifdef _WIN32
-    #include <windows.h>
+#include <windows.h>
 #else
-    #include <X11/Xlib.h>
-    #include <X11/Xutil.h>
-    #include <unistd.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <unistd.h>
 #endif
 
 #include <stdio.h>
@@ -14,247 +14,182 @@
 #include <stdbool.h>
 
 #ifdef __cplusplus
-namespace Syncio {
-    class UICore {
-    public:
-        UICore(const char* title, int width, int height);
-        ~UICore();
-        void mainLoop();
-        void render();
-        void cleanup();
+namespace Syncio
+{
+    namespace UICore
+    {
 
-    private:
-        int width;
-        int height;
-        bool isRunning;
+        // Predefined colors (using RGB format)
+        struct Color
+        {
+            int r, g, b;
+        };
 
-    #ifdef _WIN32
-        HWND hwnd;
-        HDC hdc;
-        static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-    #else
-        Display* display;
-        Window window;
-        GC gc;
-    #endif
-    };
+        const Color RED = {255, 0, 0};
+        const Color GREEN = {0, 255, 0};
+        const Color BLUE = {0, 0, 255};
+        const Color BLACK = {0, 0, 0};
+        const Color WHITE = {255, 255, 255};
+        const Color YELLOW = {255, 255, 0};
+        const Color CYAN = {0, 255, 255};
+        const Color MAGENTA = {255, 0, 255};
 
-    // UICore C++ Constructor
-    UICore::UICore(const char* title, int width, int height) : width(width), height(height), isRunning(true) {
-    #ifdef _WIN32
-        WNDCLASS wc = {0};
-        wc.lpfnWndProc = UICore::WindowProc;
-        wc.hInstance = GetModuleHandle(NULL);
-        wc.lpszClassName = "SyncioWindowClass";
-        
-        RegisterClass(&wc);
+        // UIWindow class inside the Syncio::UICore namespace
+        class UIWindow
+        {
+        public:
+            UIWindow(const char *title, int width, int height);
+            ~UIWindow();
+            void mainloop();
+            void render(const Color &color);
+            void cleanup();
 
-        hwnd = CreateWindowEx(
-            0, "SyncioWindowClass", title, WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-            CW_USEDEFAULT, CW_USEDEFAULT, width, height,
-            NULL, NULL, GetModuleHandle(NULL), NULL
-        );
-        
-        if (!hwnd) {
-            printf("Failed to create window.\n");
-            exit(1);
+        private:
+            int width;
+            int height;
+            bool isRunning;
+
+#ifdef _WIN32
+            HWND hwnd;
+            HDC hdc;
+            static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+#else
+            Display *display;
+            Window window;
+            GC gc;
+#endif
+        };
+
+        // UIWindow C++ Constructor
+        UIWindow::UIWindow(const char *title, int width, int height) : width(width), height(height), isRunning(true)
+        {
+#ifdef _WIN32
+            WNDCLASS wc = {0};
+            wc.lpfnWndProc = UIWindow::WindowProc;
+            wc.hInstance = GetModuleHandle(NULL);
+            wc.lpszClassName = "SyncioUICoreWindowClass";
+
+            RegisterClass(&wc);
+
+            hwnd = CreateWindowEx(
+                0, "SyncioUICoreWindowClass", title, WS_OVERLAPPEDWINDOW | WS_VISIBLE,
+                CW_USEDEFAULT, CW_USEDEFAULT, width, height,
+                NULL, NULL, GetModuleHandle(NULL), NULL);
+
+            if (!hwnd)
+            {
+                printf("Failed to create window.\n");
+                exit(1);
+            }
+            hdc = GetDC(hwnd);
+#else
+            display = XOpenDisplay(NULL);
+            if (display == NULL)
+            {
+                printf("Failed to open X display.\n");
+                exit(1);
+            }
+
+            int screen = DefaultScreen(display);
+            window = XCreateSimpleWindow(
+                display, RootWindow(display, screen),
+                10, 10, width, height, 1,
+                BlackPixel(display, screen), WhitePixel(display, screen));
+
+            XSelectInput(display, window, ExposureMask | KeyPressMask);
+            XMapWindow(display, window);
+
+            gc = XCreateGC(display, window, 0, NULL);
+#endif
         }
-    #else
-        display = XOpenDisplay(NULL);
-        if (display == NULL) {
-            printf("Failed to open X display.\n");
-            exit(1);
+
+        // Windows-specific message handler
+#ifdef _WIN32
+        LRESULT CALLBACK UIWindow::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+        {
+            if (uMsg == WM_DESTROY)
+            {
+                PostQuitMessage(0);
+            }
+            return DefWindowProc(hwnd, uMsg, wParam, lParam);
+        }
+#endif
+
+        // UIWindow Destructor
+        UIWindow::~UIWindow()
+        {
+            cleanup();
         }
 
-        int screen = DefaultScreen(display);
-        window = XCreateSimpleWindow(
-            display, RootWindow(display, screen), 
-            10, 10, width, height, 1, 
-            BlackPixel(display, screen), WhitePixel(display, screen)
-        );
-
-        XSelectInput(display, window, ExposureMask | KeyPressMask);
-        XMapWindow(display, window);
-
-        gc = XCreateGC(display, window, 0, NULL);
-    #endif
-    }
-
-    // Windows-specific message handler
-    #ifdef _WIN32
-    LRESULT CALLBACK UICore::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-        if (uMsg == WM_CLOSE) {
-            PostQuitMessage(0);
-            return 0;
-        } else if (uMsg == WM_PAINT) {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hwnd, &ps);
-            EndPaint(hwnd, &ps);
-            return 0;
+        // Render function
+        void UIWindow::render(const Color &color)
+        {
+#ifdef _WIN32
+            HBRUSH brush = CreateSolidBrush(RGB(color.r, color.g, color.b));
+            RECT rect;
+            GetClientRect(hwnd, &rect);
+            FillRect(hdc, &rect, brush);
+            DeleteObject(brush);
+#else
+            XSetForeground(display, gc, (color.r << 16) | (color.g << 8) | color.b);
+            XFillRectangle(display, window, gc, 0, 0, width, height);
+#endif
         }
-        return DefWindowProc(hwnd, uMsg, wParam, lParam);
-    }
-    #endif
 
-    // Main loop for UI Core
-    void UICore::mainLoop() {
-    #ifdef _WIN32
-        MSG msg;
-        while (isRunning) {
-            while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-                if (msg.message == WM_QUIT) {
+        // Main event loop
+        void UIWindow::mainloop()
+        {
+#ifdef _WIN32
+            MSG msg;
+            while (isRunning)
+            {
+                while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+                {
+                    if (msg.message == WM_QUIT)
+                    {
+                        isRunning = false;
+                    }
+                    TranslateMessage(&msg);
+                    DispatchMessage(&msg);
+                }
+                render(RED); // Example rendering with a predefined color
+                Sleep(16);
+            }
+#else
+            XEvent event;
+            while (isRunning)
+            {
+                XNextEvent(display, &event);
+                if (event.type == Expose)
+                {
+                    render(RED); // Example rendering with a predefined color
+                }
+                else if (event.type == KeyPress)
+                {
                     isRunning = false;
                 }
-                TranslateMessage(&msg);
-                DispatchMessage(&msg);
+                usleep(16000);
             }
-            render();
-            Sleep(16);
+#endif
         }
-    #else
-        XEvent event;
-        while (isRunning) {
-            XNextEvent(display, &event);
-            if (event.type == Expose) {
-                render();
-            } else if (event.type == KeyPress) {
-                isRunning = false;
-            }
-            usleep(16000);
+
+        // Cleanup resources
+        void UIWindow::cleanup()
+        {
+#ifdef _WIN32
+            ReleaseDC(hwnd, hdc);
+            DestroyWindow(hwnd);
+            PostQuitMessage(0);
+#else
+            XDestroyWindow(display, window);
+            XCloseDisplay(display);
+#endif
         }
-    #endif
+
     }
-
-    // Render function for drawing in the window
-    void UICore::render() {
-    #ifdef _WIN32
-        RECT rect;
-        GetClientRect(hwnd, &rect);
-        FillRect(hdc, &rect, (HBRUSH)(COLOR_WINDOW + 1));
-        Rectangle(hdc, 100, 100, 300, 300);
-    #else
-        XSetForeground(display, gc, BlackPixel(display, DefaultScreen(display)));
-        XFillRectangle(display, window, gc, 100, 100, 200, 200);
-    #endif
-    }
-
-    // Cleanup function for resources
-    void UICore::cleanup() {
-    #ifdef _WIN32
-        DestroyWindow(hwnd);
-        PostQuitMessage(0);
-    #else
-        XDestroyWindow(display, window);
-        XCloseDisplay(display);
-    #endif
-    }
-
-    UICore::~UICore() {
-        cleanup();
-    }
-
-} // namespace Syncio
-
+}
+#else
+#error "UiCore is not suppoted"
 #endif // __cplusplus
-
-
-// C interface for UICore-like functionality
-
-typedef struct {
-    int width;
-    int height;
-    bool isRunning;
-
-#ifdef _WIN32
-    HWND hwnd;
-    HDC hdc;
-#else
-    Display* display;
-    Window window;
-    GC gc;
-#endif
-} UIWindow;
-
-static UIWindow window;
-
-// C interface functions
-void uicore_init(const char* title, int width, int height) {
-#ifdef _WIN32
-    WNDCLASS wc = {0};
-    wc.lpfnWndProc = DefWindowProc;
-    wc.hInstance = GetModuleHandle(NULL);
-    wc.lpszClassName = "SyncioCWindowClass";
-    
-    RegisterClass(&wc);
-
-    window.hwnd = CreateWindowEx(
-        0, "SyncioCWindowClass", title, WS_OVERLAPPEDWINDOW | WS_VISIBLE,
-        CW_USEDEFAULT, CW_USEDEFAULT, width, height,
-        NULL, NULL, GetModuleHandle(NULL), NULL
-    );
-    
-    if (!window.hwnd) {
-        printf("Failed to create window.\n");
-        exit(1);
-    }
-
-#else
-    window.display = XOpenDisplay(NULL);
-    if (window.display == NULL) {
-        printf("Failed to open X display.\n");
-        exit(1);
-    }
-
-    int screen = DefaultScreen(window.display);
-    window.window = XCreateSimpleWindow(
-        window.display, RootWindow(window.display, screen), 
-        10, 10, width, height, 1, 
-        BlackPixel(window.display, screen), WhitePixel(window.display, screen)
-    );
-
-    XSelectInput(window.display, window.window, ExposureMask | KeyPressMask);
-    XMapWindow(window.display, window.window);
-
-    window.gc = XCreateGC(window.display, window.window, 0, NULL);
-#endif
-}
-
-void main_loop() {
-#ifdef _WIN32
-    MSG msg;
-    while (window.isRunning) {
-        while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-            if (msg.message == WM_QUIT) {
-                window.isRunning = false;
-            }
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-        // You could call a C-based render function here if needed
-        Sleep(16);
-    }
-#else
-    XEvent event;
-    while (window.isRunning) {
-        XNextEvent(window.display, &event);
-        if (event.type == Expose) {
-            // C-based rendering function
-        } else if (event.type == KeyPress) {
-            window.isRunning = false;
-        }
-        usleep(16000);
-    }
-#endif
-}
-
-void cleanup() {
-#ifdef _WIN32
-    DestroyWindow(window.hwnd);
-    PostQuitMessage(0);
-#else
-    XDestroyWindow(window.display, window.window);
-    XCloseDisplay(window.display);
-#endif
-}
 
 #endif // UICORE_H
