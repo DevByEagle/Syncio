@@ -49,7 +49,7 @@ namespace Syncio {
     };
 
     int random(int min, int max) {
-        return (rand() % (max - min + a)) + min;
+        return (rand() % (max - min + 1)) + min;
     }
 }
 #else
