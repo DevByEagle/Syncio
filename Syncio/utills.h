@@ -18,7 +18,7 @@ namespace Syncio {
             delete[] data;
         }
 
-        virtual void Append(int value) {
+        void Append(int value) {
             if (size >= capacity) {
                 capacity *= 2;
                 data = (int*)realloc(data, capacity * sizeof(int));
@@ -33,7 +33,7 @@ namespace Syncio {
             return -1; // or handle error
         }
 
-        void Set(size_t index, int value) {
+        virtual  void Set(size_t index, int value) {
             if (index < size) {
                 data[index] = value;
             }
