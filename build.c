@@ -1,12 +1,10 @@
 #include "cbuild.h"
 #include "Syncio/syncio.h"
 
-int main(int argc, char** argv) {
-    if (argc < 2) {
-        ASSERT(false, "Usage %s <filename> <number-of-files> <is_cpp>");
-    }
-
-    CBuildConfig config = cbuild_default_config(argv[1], argv[2], "Syncio.exe");
-    cbuild_set_language_flags(&config, argv[3]);
+int main() {
+    const char* source_files[] = {"main.cpp"};
+    CBuildConfig config = cbuild_default_config(source_files, 1, "Syncio.exe");
+    cbuild_set_language_flags(&config, true);
     cbuild_run(&config);
+    return 0;
 }
