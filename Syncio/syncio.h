@@ -25,7 +25,7 @@
 namespace Syncio {
     void delay(int ms) {
         #ifdef _WIN32 || _WIN64
-            sleep(ms);
+            Sleep(ms);
         #else
             usleep(ms * 1000);
         #endif

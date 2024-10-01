@@ -1,14 +1,18 @@
 #include "Syncio/syncio.h"
 #include "Syncio/utills.h"
 
-using namespace Syncio;
+using Syncio::delay;
 
 int main() {
   bool isRunning = true;
 
-  while (isRunning == true) {
-    int val = Syncio::random(0, 1000000);
+  while (isRunning) {
+    int val = Syncio::random(0, 10000);
     printf("%d\n", val);
-    Syncio::delay(2000);
+    #ifdef __liunx__
+    delay(1000);
+    #else
+    delay(200);
+    #endif
   }
 }
