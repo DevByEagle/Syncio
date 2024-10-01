@@ -17,7 +17,9 @@
 
 #ifdef __cplusplus
 namespace Syncio {
-
+    double round(double value) {
+        return (value >= 0) ? (int)(value + 0.5) : (int)(value - 0.5);
+    }
 }
 #else
 char* fload(const char* filename, size_t* outSize) {

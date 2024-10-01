@@ -1,8 +1,10 @@
-#include "Syncio/syncio.h"
-#include "Syncio/utills.h"
+#include <Syncio/syncio.h>
+#include <Syncio/utills.h>
 
-int main() {
-    Syncio::ArrayLite array(2);
+using namespace Syncio;
+
+int main(void) {
+    ArrayLite array(2);
 
     array.Append(1);
     array.Append(2);
