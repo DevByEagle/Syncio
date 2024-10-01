@@ -9,6 +9,6 @@ int main() {
   while (isRunning == true) {
     int val = Syncio::random(0, 1000000);
     printf("%d\n", val);
-    Syncio::delay(2000)
+    Syncio::delay(2000);
   }
 }
