@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <string.h>
+
 
 // Detect OS
 #if defined(_WIN32) || defined(_WIN64)
@@ -43,6 +45,22 @@ static CBuildConfig cbuild_default_config(const char **source_files, size_t num_
     return config;
 }
 
+static void cbuild_set_language_flags(CBuildConfig *config, bool is_cpp) {
+    if (is_cpp) {
+        #if CBUILD_OS_WINDOWS
+        config->flags = "/EHsc"; // C++ flag for MSVC
+        #else
+        config->compiler = "g++"; // Use G++ for C++
+        config->flags = "-Wall -O2"; // C++ flags for GCC
+        #endif
+    } else {
+        #if CBUILD_OS_WINDOWS
+        config->flags = "/EHsc /TC"; // C flag for MSVC
+        #else
+        config->flags = "-Wall -O2 -x c"; // C flag for GCC
+        #endif
+    }
+}
 static void cbuild_add_flags(CBuildConfig *config, ...) {
     size_t current_length = strlen(config->flags);
     
