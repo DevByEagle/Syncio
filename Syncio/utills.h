@@ -47,6 +47,12 @@ namespace Syncio {
         size_t size;
         size_t capacity;
     };
+
+   class MathCore {
+   public:
+      static int round() {}
+     
+   }
 }
 #endif
 
