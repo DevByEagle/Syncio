@@ -18,7 +18,7 @@ namespace Syncio {
             delete[] data;
         }
 
-        void Append(int value) {
+        virtual void Append(int value) {
             if (size >= capacity) {
                 capacity *= 2;
                 data = (int*)realloc(data, capacity * sizeof(int));
@@ -26,7 +26,7 @@ namespace Syncio {
             data[size++] = value;
         }
 
-        int Get(size_t index) {
+        virtual int Get(size_t index) {
             if (index < size) {
                 return data[index];
             }
@@ -48,11 +48,13 @@ namespace Syncio {
         size_t capacity;
     };
 
-   class MathCore {
-   public:
-      static int round() {}
-     
-   }
+    int random(int min, int max) {
+        return (rand() % (max - min + a)) + min;
+    }
+}
+#else
+int random(int min, int max) {
+    return (rand() % (max - min + a)) + min;
 }
 #endif
 
