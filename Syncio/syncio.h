@@ -5,6 +5,12 @@
 #include <stdlib.h>
 #include "types.h"
 
+#ifdef _WIN32 || _WIN64
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #define ASSERT(expr, ...)                                 \
     do {                                                         \
         if (!(expr)) {                                            \
@@ -17,6 +23,13 @@
 
 #ifdef __cplusplus
 namespace Syncio {
+    void delay(int ms) {
+        #ifdef _WIN32 || _WIN64
+            sleep(ms);
+        #else
+            usleep(ms * 1000);
+        #endif
+    }
 }
 #else
 char* fload(const char* filename, size_t* outSize) {
