@@ -70,6 +70,13 @@ char* fload(const char* filename, size_t* outSize) {
     
     return buffer;
 }
+void delay(int ms) {
+        #ifdef _WIN32 || _WIN64
+            sleep(ms);
+        #else
+            usleep(ms * 1000);
+        #endif
+    }
 #endif
 
 #endif // SYNCIO_H
