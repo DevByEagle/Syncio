@@ -4,6 +4,11 @@
 using namespace Syncio;
 
 int main() {
-  MathCore::round(18);
-  return 0;
+  bool isRunning = true;
+
+  while (isRunning == true) {
+    int val = Syncio::random(0, 1000000);
+    printf("%d\n", val);
+    Syncio::delay(2000)
+  }
 }
