@@ -27,7 +27,7 @@ Before you begin, ensure you have the following installed:
 | Dependency | Version |
 | :--- | :--- |
 | **GCC** | *lastes* |
-| **libjson-c** | *lastes* |
+| **json-c** | *lastes* |
 
 ## Methods
 
