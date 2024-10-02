@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - README.md
       - .github/**
+      - docs/**
       - '!.github/workflows/build.yml'
     types: [opened, synchronize, reopened, ready_for_review]
   push:
@@ -29,4 +30,4 @@ jobs:
     - name: Build Project
       run: ./CBuild.exe syncio
     - name: Run
-      run: ./Syncio.exe
+      run: ./syncio
