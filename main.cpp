@@ -15,4 +15,5 @@ int main() {
     delay(200);
     #endif
   }
+  return 0;
 }
