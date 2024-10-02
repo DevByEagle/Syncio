@@ -25,7 +25,7 @@ jobs:
     - name: Install Dependency
       run: sudo apt update && sudo apt-get install gcc libjson-c-dev
     - name: Build
-      run: gcc -o CBuild.exe build.c
+      run: gcc -o CBuild.exe build.c -ljson-c
     - name: Build Project
       run: ./CBuild.exe syncio
     - name: Run
