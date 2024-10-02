@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install Dependency
-      run: sudo apt updated && sudo apt-get install gcc && sudo apt-get install libjsonp-c-dev
+      run: sudo apt updated && sudo apt-get install gcc libjson-c-dev
     - name: Build
       run: gcc -o CBuild.exe build.c
     - name: Build Project
