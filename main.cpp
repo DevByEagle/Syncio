@@ -2,7 +2,7 @@
 #include "Syncio/types.h"
 
 int main() {
-  printf("%zu\n", sizeof(Syncio::Size_t))
+  printf("%zu\n", sizeof(Syncio::Size_t));
   return 0;
 }
 
