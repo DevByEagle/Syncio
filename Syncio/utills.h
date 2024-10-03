@@ -30,10 +30,10 @@ namespace Syncio {
             if (index < size) {
                 return data[index];
             }
-            return -1; // or handle error
+            return -1;
         }
 
-        virtual  void Set(size_t index, int value) {
+        virtual void Set(size_t index, int value) {
             if (index < size) {
                 data[index] = value;
             }
@@ -42,20 +42,34 @@ namespace Syncio {
         size_t Size() {
             return size;
         }
+
     private:
         int* data;
         size_t size;
         size_t capacity;
     };
+    
+    class MathCore {
+        public:
+        static int round(float num) {
+            if (num >= 0) {
+                return (int)(num + 0.5f);
+            } else {
+                return (int)(num - 0.5f);
+            }
+        }
 
-    int random(int min, int max) {
-        return (rand() % (max - min + 1)) + min;
-    }
+        static int floor(float num) {
+            int intPart = (int)num;
+            return (num < intPart) ? (intPart - 1) : intPart;
+        }
+
+        static float square(float num) {
+            return num * num;
+        }
+    };
 }
 #else
-int random(int min, int max) {
-    return (rand() % (max - min + a)) + min;
-}
 #endif
 
 #endif // UTILLS_H

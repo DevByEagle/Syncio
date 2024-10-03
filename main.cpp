@@ -1,10 +1,10 @@
 #include "Syncio/syncio.h"
 #include "Syncio/utills.h"
 
+using Syncio::MathCore;
 using Syncio::delay;
 
 int main() {
-  int val = Syncio::random(0, 1000);
-  printf("%d\n", val);
+  printf("Rounded: %d\n", MathCore::round(4.6f));
   return 0;
 }

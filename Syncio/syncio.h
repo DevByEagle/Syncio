@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "types.h"
 
-#ifdef _WIN32 || _WIN64
+#if  defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
 #else
 #include <unistd.h>
@@ -24,7 +24,7 @@
 #ifdef __cplusplus
 namespace Syncio {
     void delay(int ms) {
-        #ifdef _WIN32 || _WIN64
+        #if defined(_WIN32) || defined(_WIN64)
             Sleep(ms);
         #else
             usleep(ms * 1000);
@@ -71,7 +71,7 @@ char* fload(const char* filename, size_t* outSize) {
     return buffer;
 }
 void delay(int ms) {
-#ifdef _WIN32 || _WIN64
+#if defined(_WIN32) ||defined(_WIN64)
     sleep(ms);
 #else
     usleep(ms * 1000);

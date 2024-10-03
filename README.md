@@ -9,14 +9,12 @@
 
 ## Project Description
 
-Syncio is an open source C/C++ library designed for providing many different string manipulation functions.
-It offers a lightweight cross-platform solution for string manipulation.
+Syncio is an open source C/C++ library designed for providing many different functions.
+It offers a lightweight cross-platform solution.
 
 ## Features
 
 - **Cross-Language compatibility**: This library can be utilized in both C and C++.
-
-- **String Handling**: This library provides a simple and convenient way to manipulate strings.
 
 - **Performance**: This is a lightweight library designed to efficiently perform operations on strings.
 
@@ -28,17 +26,3 @@ Before you begin, ensure you have the following installed:
 | :--- | :--- |
 | **GCC** | *lastes* |
 | **json-c** | *lastes* |
-
-## Methods
-
-`join`: concatnates two strings
-
-`cmpstr`: compares two string lexicographically
-
-`empty`: return if string is empty or not
-
-`strptr`: prints string from a pointer
-
-`size`: return size of the string
-
-`strfree`: frees memory of a string
