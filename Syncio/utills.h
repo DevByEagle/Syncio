@@ -43,6 +43,15 @@ namespace Syncio {
             return size;
         }
 
+        ArrayLite* Filter(bool (*predicate)(int)) {
+            ArrayLite* result = new ArrayLite(capacity); // Create a new ArrayLite for the filtered result
+            for (size_t i = 0; i < size; i++) {
+                if (predicate(data[i])) {
+                    result->Append(data[i]); // Append to the new ArrayLite if it satisfies the predicate
+                }
+            }
+            return result; // Return the new filtered ArrayLite
+        }
     private:
         int* data;
         size_t size;
