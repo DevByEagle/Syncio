@@ -1,23 +1,39 @@
-#include "Syncio/syncio.h"
-#include "Syncio/utills.h"
-bool isEven(int value) {
-  return value % 2 == 0;
-}
+#include <iostream>
+#include "Syncio/utills.h" // Make sure to include the header file
 
 int main() {
-  Syncio::ArrayLite array(10);
-  array.Append(1);
-  array.Append(2);
-  array.Append(3);
-  array.Append(4);
+    // Create an ArrayLite instance with an initial capacity of 4
+    Syncio::ArrayLite myArray(4);
 
-  Syncio::ArrayLite* filteredArray = array.Filter(isEven);
+    // Append some values
+    myArray.Append(10);
+    myArray.Append(20);
+    myArray.Append(30);
+    myArray.Append(40);
+    
+    // Print the current size and contents
+    std::cout << "Size after appending: " << myArray.Size() << std::endl;
+    for (size_t i = 0; i < myArray.Size(); i++) {
+        std::cout << "Element at index " << i << ": " << myArray.Get(i) << std::endl;
+    }
+    
+    // Clear the array
+    myArray.Clear();
+    std::cout << "\nSize after clearing: " << myArray.Size() << std::endl;
 
-  for (size_t i = 0; i < filteredArray->Size(); i++) {
-    printf("%d\n", filteredArray->Get(i));
-  }
+    // Append again after clearing
+    myArray.Append(50);
+    myArray.Append(60);
+    
+    // Convert to C-style array
+    int* cArray = myArray.ToArray();
+    std::cout << "\nContents of C-style array:" << std::endl;
+    for (size_t i = 0; i < myArray.Size(); i++) {
+        std::cout << "Element at index " << i << ": " << cArray[i] << std::endl;
+    }
 
-  delete filteredArray;
+    // Free the C-style array
+    free(cArray);
 
-  return 0;
+    return 0;
 }

@@ -43,14 +43,29 @@ namespace Syncio {
             return size;
         }
 
-        ArrayLite* Filter(bool (*predicate)(int)) {
-            ArrayLite* result = new ArrayLite(capacity); // Create a new ArrayLite for the filtered result
+        int Find(int value) const {
             for (size_t i = 0; i < size; i++) {
-                if (predicate(data[i])) {
-                    result->Append(data[i]); // Append to the new ArrayLite if it satisfies the predicate
+                if (data[i] == value) {
+                    return i;
                 }
             }
-            return result; // Return the new filtered ArrayLite
+            return -1; // Not found
+        }
+
+        bool IsEmpty() const {
+            return size == 0;   
+        }
+
+        void Clear() {
+            size = 0;
+        }
+
+        int* ToArray() const {
+            int* arrayCopy = (int*)malloc(size * sizeof(int));
+            for (size_t i = 0; i < size; i++) {
+                arrayCopy[i] = data[i];
+            }
+            return arrayCopy;
         }
     private:
         int* data;
