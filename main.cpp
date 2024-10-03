@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Syncio/utills.h" // Make sure to include the header file
+#include "Syncio/types.h"
 
 int main() {
     // Create an ArrayLite instance with an initial capacity of 4
@@ -16,7 +17,7 @@ int main() {
     for (size_t i = 0; i < myArray.Size(); i++) {
         std::cout << "Element at index " << i << ": " << myArray.Get(i) << std::endl;
     }
-    
+
     // Clear the array
     myArray.Clear();
     std::cout << "\nSize after clearing: " << myArray.Size() << std::endl;
@@ -34,6 +35,8 @@ int main() {
 
     // Free the C-style array
     free(cArray);
-
+    
+    Syncio::
     return 0;
 }
+
