@@ -74,18 +74,34 @@ void run_command(const char *command) {
 
 void build_target(Target target) {
     char build_command[512];
+    char executable_name[512];
 
-    // Set compiler flags based on the build mode
+    // Check the compiler being used
+#ifdef _MSC_VER
+    // MSVC
+    if (strcmp(target.build_mode, "release") == 0) {
+        snprintf(executable_name, sizeof(executable_name), "%s.exe", target.name);
+    } else {
+        snprintf(executable_name, sizeof(executable_name), "%s", target.name);
+    }
+    snprintf(build_command, sizeof(build_command), "cl /EHsc /Fe:%s %s", executable_name, target.source_file);
+#elif defined(__MINGW32__) || defined(__MINGW64__)
+    // MinGW
     if (strcmp(target.build_mode, "debug") == 0) {
         snprintf(build_command, sizeof(build_command), "gcc -g %s -o %s", target.source_file, target.name);
     } else if (strcmp(target.build_mode, "release") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s", target.source_file, target.name);
+        snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s.exe", target.source_file, target.name);
     } else if (strcmp(target.build_mode, "testing") == 0) {
         snprintf(build_command, sizeof(build_command), "gcc -g -DTESTING %s -o %s", target.source_file, target.name);
     } else {
         fprintf(stderr, "Unknown build mode: %s\n", target.build_mode);
         return;
     }
+#else
+    // Other compilers (optional)
+    fprintf(stderr, "Unsupported compiler or platform.\n");
+    return;
+#endif
 
     // Run the build command
     run_command(build_command);
