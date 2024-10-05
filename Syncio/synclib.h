@@ -13,7 +13,7 @@ namespace Syncio {
         ArrayLite(size_t initial_capacity) {
             data = (int*)std::malloc(initial_capacity * sizeof(int));
             size = 0;
-            capacity = initial_capacity
+            capacity = initial_capacity;
         }
 
         ~ArrayLite() {
@@ -37,7 +37,7 @@ namespace Syncio {
 
         virtual void Set(size_t index, int value) {
             if (index < size) {
-                data[index] = value
+                data[index] = value;
             }
         }
 
@@ -89,7 +89,7 @@ public:
     // Function to get the contents of the loaded file
     std::string read() const {
         return fileContents; // Return the contents
-    }
+    };
 }
 #else
 #include <stdio.h>
