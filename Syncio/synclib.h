@@ -64,32 +64,30 @@ private:
     std::string fileContents; // To store the contents of the file
 
 public:
-    // Constructor to initialize the file path
-    Pathio(const std::string& path) : filePath(path) {}
+        Pathio(const std::string& path) : filePath(path) {}
 
-    // Function to load the file
-    bool load() {
-        std::ifstream file(filePath); // Open the file
-        if (!file.is_open()) {         // Check if the file opened successfully
-            std::cerr << "Error: Could not open file " << filePath << std::endl;
-            return false;
-        }
+        bool load() {
+            std::ifstream file(filePath); // Open the file
+            if (!file.is_open()) {         // Check if the file opened successfully
+                std::cerr << "Error: Could not open file " << filePath << std::endl;
+                return false;
+            }
         
-        // Read the contents of the file
-        std::string line;
-        fileContents.clear(); // Clear previous contents
-        while (std::getline(file, line)) {
-            fileContents += line + "\n"; // Append line to contents
-        }
+            // Read the contents of the file
+            std::string line;
+            fileContents.clear(); // Clear previous contents
+            while (std::getline(file, line)) {
+                fileContents += line + "\n"; // Append line to contents
+            }
         
-        file.close(); // Close the file
-        return true;  // Return true if successful
+            file.close(); // Close the file
+            return true;  // Return true if successful
+        }
+
+        std::string read() const {
+            return fileContents; // Return the contents
+        };
     }
-
-    // Function to get the contents of the loaded file
-    std::string read() const {
-        return fileContents; // Return the contents
-    };
 }
 #else
 #include <stdio.h>
