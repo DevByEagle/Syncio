@@ -2,11 +2,11 @@
 #define SYNCLIB_H
 
 #ifdef __cplusplus
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <cstdlib>
-#include <stddef.h>
+#include <cstddef>
+#include <fstream>
+#include <iostream>
+#include <string>
 namespace Syncio {
     class ArrayLite {
     public:
@@ -51,8 +51,8 @@ namespace Syncio {
 
     private:
         int* data;
-        size_t size;
-        size_t capacity;
+        std::size_t size;
+        std::size_t capacity;
     };
 
     /*class MathCore {
