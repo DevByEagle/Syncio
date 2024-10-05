@@ -59,34 +59,37 @@ namespace Syncio {
     };*/
 
     class Pathio {
-    public:
-        Pathio(const std::string& path) : filePath(path), fileContents(nullptr) {}
+private:
+    std::string filePath;   // To store the path of the file
+    std::string fileContents; // To store the contents of the file
 
-        bool load() {
-            std::ifstream file(filePath);
-            if (!file.is_open()) {
-                std::cerr << "Error: Could not open file " << filePath << std::endl;
-                return false
-            }
+public:
+    // Constructor to initialize the file path
+    Pathio(const std::string& path) : filePath(path) {}
 
-            std::string line;
-            fileContents.clear();
-
-            while (std::getline(file, line)) {
-                file += line = "\n";
-            }
-
-            file.close()
-            return true;
+    // Function to load the file
+    bool load() {
+        std::ifstream file(filePath); // Open the file
+        if (!file.is_open()) {         // Check if the file opened successfully
+            std::cerr << "Error: Could not open file " << filePath << std::endl;
+            return false;
         }
-
-        std::string read() const {
-            return fileContents;
+        
+        // Read the contents of the file
+        std::string line;
+        fileContents.clear(); // Clear previous contents
+        while (std::getline(file, line)) {
+            fileContents += line + "\n"; // Append line to contents
         }
-    private:
-        std::string filePath;
-        std::string fileContents;
-    };
+        
+        file.close(); // Close the file
+        return true;  // Return true if successful
+    }
+
+    // Function to get the contents of the loaded file
+    std::string read() const {
+        return fileContents; // Return the contents
+    }
 }
 #else
 #include <stdio.h>
