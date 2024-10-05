@@ -6,5 +6,7 @@ void myfunction(void) {
 }
 
 int main() {
+  Syncio::SyncEvent func = myfunction;
+  func();
   return 0;
 }
