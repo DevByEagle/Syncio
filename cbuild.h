@@ -9,7 +9,7 @@
 #ifdef __linux__
 #include <json-c/json.h> // Ensure you have the json-c library installed on Linux
 #else
-#include <cjson/cJSON.h> // Include your chosen alternative for Windows
+#include <cJSON/cJSON.h> // Include your chosen alternative for Windows
 #endif
 
 typedef struct {
