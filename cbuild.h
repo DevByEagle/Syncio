@@ -9,7 +9,7 @@
 #ifdef __linux__
 #include <json-c/json.h> // Ensure you have the json-c library installed on Linux
 #else
-#include <cJSON/cJSON.h> // Include your chosen alternative for Windows
+#include <cjson/cJSON.h> // Include your chosen alternative for Windows
 #endif
 
 typedef struct {
@@ -123,6 +123,10 @@ void build_target(Target target) {
     char build_command[512];
     char executable_name[512];
 
+    // Determine if the source file is a C++ file
+    const char *extension = strrchr(target.source_file, '.');
+    int is_cpp = (extension && (strcmp(extension, ".cpp") == 0 || strcmp(extension, ".cc") == 0));
+
     // Check the operating system and compiler being used
 #ifdef _WIN32
     #ifdef _MSC_VER
@@ -135,15 +139,10 @@ void build_target(Target target) {
     snprintf(build_command, sizeof(build_command), "cl /EHsc /Fe:%s %s", executable_name, target.source_file);
     #elif defined(__MINGW32__) || defined(__MINGW64__)
     // MinGW
-    if (strcmp(target.build_mode, "debug") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -g %s -o %s", target.source_file, target.name);
-    } else if (strcmp(target.build_mode, "release") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s.exe", target.source_file, target.name);
-    } else if (strcmp(target.build_mode, "testing") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -g -DTESTING %s -o %s", target.source_file, target.name);
+    if (is_cpp) {
+        snprintf(build_command, sizeof(build_command), "g++ %s -o %s", target.source_file, target.name);
     } else {
-        fprintf(stderr, "Unknown build mode: %s\n", target.build_mode);
-        return;
+        snprintf(build_command, sizeof(build_command), "gcc %s -o %s", target.source_file, target.name);
     }
     #else
     // Unsupported Windows compiler
@@ -153,15 +152,28 @@ void build_target(Target target) {
 
 #elif defined(__linux__)
     // Linux
-    if (strcmp(target.build_mode, "debug") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -g %s -o %s", target.source_file, target.name);
-    } else if (strcmp(target.build_mode, "release") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s", target.source_file, target.name);
-    } else if (strcmp(target.build_mode, "testing") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -g -DTESTING %s -o %s", target.source_file, target.name);
+    if (is_cpp) {
+        if (strcmp(target.build_mode, "debug") == 0) {
+            snprintf(build_command, sizeof(build_command), "g++ -g %s -o %s", target.source_file, target.name);
+        } else if (strcmp(target.build_mode, "release") == 0) {
+            snprintf(build_command, sizeof(build_command), "g++ -O2 %s -o %s", target.source_file, target.name);
+        } else if (strcmp(target.build_mode, "testing") == 0) {
+            snprintf(build_command, sizeof(build_command), "g++ -g -DTESTING %s -o %s", target.source_file, target.name);
+        } else {
+            fprintf(stderr, "Unknown build mode: %s\n", target.build_mode);
+            return;
+        }
     } else {
-        fprintf(stderr, "Unknown build mode: %s\n", target.build_mode);
-        return;
+        if (strcmp(target.build_mode, "debug") == 0) {
+            snprintf(build_command, sizeof(build_command), "gcc -g %s -o %s", target.source_file, target.name);
+        } else if (strcmp(target.build_mode, "release") == 0) {
+            snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s", target.source_file, target.name);
+        } else if (strcmp(target.build_mode, "testing") == 0) {
+            snprintf(build_command, sizeof(build_command), "gcc -g -DTESTING %s -o %s", target.source_file, target.name);
+        } else {
+            fprintf(stderr, "Unknown build mode: %s\n", target.build_mode);
+            return;
+        }
     }
 #else
     // Other platforms (optional)
