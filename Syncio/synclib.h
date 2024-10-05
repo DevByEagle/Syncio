@@ -86,8 +86,8 @@ public:
 
         std::string read() const {
             return fileContents; // Return the contents
-        };
-    }
+        }
+    };
 }
 #else
 #include <stdio.h>
