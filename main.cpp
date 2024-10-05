@@ -1,11 +1,10 @@
 #include "Syncio/syncio.h"
 #include "Syncio/synclib.h"
 
-int main() {
-  Syncio::Pathio pathio("test.txt");
+void myfunction(void) {
+  std::cout << "Hello World" << std::endl;
+}
 
-  if (pathio.load()) {
-    std::cout << "File Contents:\n" << pathio.read();
-  }
+int main() {
   return 0;
 }

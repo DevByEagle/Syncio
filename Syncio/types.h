@@ -7,6 +7,6 @@ typedef unsigned long long Uint64_t;
 
 #ifdef __cplusplus
 namespace Syncio {
-    //typedef void (*SyncEvent)(void);
+    typedef void (*SyncEvent)(void);
 }
 #endif
