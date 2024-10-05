@@ -4,7 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <json-c/json.h> // Ensure you have the json-c library installed
+
+// Include the appropriate JSON library based on the platform
+#ifdef __linux__
+#include <json-c/json.h> // Ensure you have the json-c library installed on Linux
+#else
+#include <cjson/cJSON.h> // Include your chosen alternative for Windows
+#endif
 
 typedef struct {
     char *name;
@@ -19,6 +25,9 @@ typedef struct {
 
 CBuildConfig load_config(const char *filename) {
     CBuildConfig config = {0};
+
+    // Platform-specific variables
+#ifdef __linux__
     struct json_object *parsed_json;
     struct json_object *targets_json;
     size_t target_count;
@@ -61,6 +70,44 @@ CBuildConfig load_config(const char *filename) {
     }
     
     free(data);
+#else
+    // Windows JSON handling using cJSON or another library
+    // You need to implement the equivalent logic for cJSON here.
+    // Load the JSON file and parse it accordingly.
+    
+    FILE *file = fopen(filename, "r");
+    if (!file) {
+        perror("Unable to open config file");
+        return config;
+    }
+    
+    fseek(file, 0, SEEK_END);
+    long length = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    char *data = malloc(length + 1);
+    fread(data, 1, length, file);
+    fclose(file);
+    data[length] = '\0';
+
+    cJSON *parsed_json = cJSON_Parse(data);
+    cJSON *targets_json = cJSON_GetObjectItem(parsed_json, "targets");
+    int target_count = cJSON_GetArraySize(targets_json);
+
+    // Allocate memory for targets
+    config.targets = malloc(sizeof(Target) * target_count);
+    config.target_count = target_count;
+
+    for (int i = 0; i < target_count; i++) {
+        cJSON *target_json = cJSON_GetArrayItem(targets_json, i);
+        config.targets[i].name = strdup(cJSON_GetObjectItem(target_json, "name")->valuestring);
+        config.targets[i].source_file = strdup(cJSON_GetObjectItem(target_json, "source_file")->valuestring);
+        config.targets[i].build_mode = strdup(cJSON_GetObjectItem(target_json, "build_mode")->valuestring);
+    }
+    
+    free(data);
+    cJSON_Delete(parsed_json); // Clean up cJSON data
+#endif
+
     return config;
 }
 
@@ -109,7 +156,7 @@ void build_target(Target target) {
     if (strcmp(target.build_mode, "debug") == 0) {
         snprintf(build_command, sizeof(build_command), "gcc -g %s -o %s", target.source_file, target.name);
     } else if (strcmp(target.build_mode, "release") == 0) {
-        snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s.exe", target.source_file, target.name);
+        snprintf(build_command, sizeof(build_command), "gcc -O2 %s -o %s", target.source_file, target.name);
     } else if (strcmp(target.build_mode, "testing") == 0) {
         snprintf(build_command, sizeof(build_command), "gcc -g -DTESTING %s -o %s", target.source_file, target.name);
     } else {
