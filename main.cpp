@@ -1,8 +1,11 @@
-#include "Syncio/utills.h" // Make sure to include the header file
-#include "Syncio/types.h"
+#include "Syncio/syncio.h"
+#include "Syncio/synclib.h"
 
 int main() {
-  printf("%zu\n", sizeof(Syncio::Size_t));
+  Syncio::Pathio pathio("test.txt");
+
+  if (pathio.load()) {
+    std::cout << "File Contents:\n" << pathio.read();
+  }
   return 0;
 }
-

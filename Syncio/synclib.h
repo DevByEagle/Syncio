@@ -3,6 +3,8 @@
 
 #ifdef __cplusplus
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <cstdlib>
 #include <stddef.h>
 namespace Syncio {
@@ -55,8 +57,36 @@ namespace Syncio {
 
     /*class MathCore {
     };*/
-    /*class Pathio {
-    } */
+
+    class Pathio {
+    public:
+        Pathio(const std::string& path) : filePath(path), fileContents(nullptr) {}
+
+        bool load() {
+            std::ifstream file(filePath);
+            if (!file.is_open()) {
+                std::cerr << "Error: Could not open file " << filePath << std::endl;
+                return false
+            }
+
+            std::string line;
+            fileContents.clear();
+
+            while (std::getline(file, line)) {
+                file += line = "\n";
+            }
+
+            file.close()
+            return true;
+        }
+
+        std::string read() const {
+            return fileContents;
+        }
+    private:
+        std::string filePath;
+        std::string fileContents;
+    };
 }
 #else
 #include <stdio.h>
