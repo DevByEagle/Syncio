@@ -8,10 +8,11 @@
 #include <iostream>
 #include <string>
 namespace Syncio {
+    template<typename T>
     class ArrayLite {
     public:
         ArrayLite(size_t initial_capacity) {
-            data = (int*)std::malloc(initial_capacity * sizeof(int));
+            data = (T*)std::malloc(initial_capacity * sizeof(int));
             size = 0;
             capacity = initial_capacity;
         }
@@ -20,28 +21,28 @@ namespace Syncio {
             delete[] data;
         }
 
-        void Append(int value) {
+        void Append(const T& value) {
             if (size >= capacity) {
                 capacity *= 2;
-                data = (int*)std::realloc(data, capacity * sizeof(int));
+                data = (T*)std::realloc(data, capacity * sizeof(int));
             }
             data[size++] = value;
         }
 
-        virtual int Get(size_t index) {
+        virtual T Get(size_t index) {
             if (index < size) {
                 return data[index];
             }
-            return -1;
+            throw std::out_of_range("Index out of range");
         }
 
-        virtual void Set(size_t index, int value) {
+        virtual void Set(size_t index, const T& value) {
             if (index < size) {
                 data[index] = value;
             }
         }
 
-        size_t Size() {
+        size_t Size() const {
             return size;
         }
 
@@ -50,7 +51,7 @@ namespace Syncio {
         }
 
     private:
-        int* data;
+        T* data;
         std::size_t size;
         std::size_t capacity;
     };
