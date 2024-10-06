@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <stdexcept>
 namespace Syncio {
     template<typename T>
     class ArrayLite {
