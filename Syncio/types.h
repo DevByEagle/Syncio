@@ -9,4 +9,6 @@ typedef unsigned long long Uint64_t;
 namespace Syncio {
     typedef void (*SyncEvent)(void);
 }
+#else
+typedef void (*SyncEvent)(void);
 #endif

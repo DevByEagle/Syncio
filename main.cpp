@@ -6,8 +6,5 @@ void print() {
 }
 
 int main() {
-  Syncio::SyncEvent func = print;
-
-  func();
-  return 0;
+  Syncio::
 }

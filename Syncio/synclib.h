@@ -55,9 +55,6 @@ namespace Syncio {
         std::size_t capacity;
     };
 
-    /*class MathCore {
-    };*/
-
     class Pathio {
     private:
         std::string filePath;   // To store the path of the file
