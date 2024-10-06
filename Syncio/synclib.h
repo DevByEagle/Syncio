@@ -6,8 +6,6 @@
 #include <cstddef>
 #include <fstream>
 #include <iostream>
-#include <memory>
-#include <functional>
 #include <string>
 namespace Syncio {
     class ArrayLite {
@@ -89,50 +87,6 @@ namespace Syncio {
         std::string read() const {
             return fileContents; // Return the contents
         }
-    };
-
-   template<typename>
-   class SyncEvent;
-
-    template <typename ReturnType, typename... Args>
-    class SyncEvent<ReturnType(Args...)> {
-    public:
-        template<typename Callable>
-        SyncEvent(Callable&& callable) : impl(std::make_unique<CallableModel<Callable>>(std::forward<Callable>(callable))) {}
-    
-        SyncEvent() : impl(nullptr) {}
-
-        SyncEvent(SyncEvent&& other) noexcept = default;
-
-        SyncEvent& operator=(SyncEvent&& other) noexcept = default;
-        SyncEvent(const SyncEvent&) = default;
-        SyncEvent& operator=(const SyncEvent&) = delete;
-
-        ReturnType operator()(Args... args) const {
-            if (!impl) throw std::bad_function_call();
-            return impl->invoke(std::forward<Args>(args)...);
-        }
-
-        explicit operator bool() const noexcept {
-            return impl != nullptr;
-        }
-
-    private:
-        struct CallableBase {
-            virtual ~CallableBase() = default;
-            virtual ReturnType invoke(Args... args) const = 0;
-        };
-
-        template <typename Callable>
-        struct CallableModel : CallableBase {
-            Callable callable;
-            CallableModel(Callable&& c) : callable(std::move(c)) {}
-            ReturnType invoke(Args... args) const override {
-                return callable(std::forward<Args>(args)...);
-            }
-        };
-
-        std::unique_ptr<CallableBase> impl;
     };
 }
 #else
