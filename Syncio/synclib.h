@@ -85,6 +85,14 @@ namespace Syncio {
             return fileContents; // Return the contents
         }
     };
+
+    class MathCore {
+    public:
+        MathCore() : m_Num(nullptr) {}
+        MathCore(int num) : m_Num(num) {}
+    private:
+        auto m_Num;
+    };
 }
 #else
 
