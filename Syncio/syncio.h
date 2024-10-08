@@ -12,6 +12,7 @@
 #ifdef __cplusplus
 #include <iostream>
 namespace Syncio {
+    
     void delay(int ms) {
         #if defined(_WIN32) || defined(_WIN64)
             Sleep(ms);
