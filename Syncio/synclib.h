@@ -6,8 +6,6 @@
 #include <cstddef>
 #include <fstream>
 #include <iostream>
-#include <vector>
-#include <new>
 #include <string>
 namespace Syncio {
     class ArrayLite {
