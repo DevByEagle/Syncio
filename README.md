@@ -1,6 +1,7 @@
-<div align="center">
-    <img src="./assets/icon.png"/>
-</div>
+<h1 align="center">
+<picture>
+    <img src="./assets/logo.png"/>
+</h1>
 
 # Syncio
 
