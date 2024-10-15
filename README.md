@@ -1,6 +1,8 @@
 <h1 align="center">
 <picture>
-    <img src="./assets/logo.png"/>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="">
+    </picture>
 </h1>
 
 # Syncio
