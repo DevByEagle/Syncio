@@ -9,13 +9,14 @@ OBJ_FILES=$(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_FILES))
 HDR_DIR=include
 HDR_FILES=$(wildcard $(HDR_DIR)/**/*.h $(HDR_DIR)/*.h)
 
-all: $(BUILD_DIR)/main
-	@echo "(DONE) $@"
-	@cp $(BUILD_DIR)/main syncio
+LIB_NAME=libsync.so
 
-$(BUILD_DIR)/main: $(OBJ_FILES) | $(BUILD_DIR)
-	@echo "(LINK) $@"
-	@$(CC) $(CFLAGS) -o $@ $^
+all: $(BUILD_DIR)/$(LIB_NAME)
+	@echo "(DONE) $@"
+
+$(BUILD_DIR)/$(LIB_NAME): $(OBJ_FILES) | $(BUILD_DIR)
+	@echo "(AR) $@"
+	@ar rcs $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HDR_FILES) | $(BUILD_DIR)
 	@echo "(COMP) $@"
@@ -29,6 +30,6 @@ $(BUILD_DIR):
 clean:
 	@echo "(CLEAN)"
 	@rm -rf $(BUILD_DIR)
-	@rm -f syncio
+	@rm -f $(BUILD_DIR)/$(LIB_NAME)
 
-.PHONY: all clean 
+.PHONY: all clean
