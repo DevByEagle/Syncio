@@ -1,6 +1,7 @@
 <h1 align="center">
 <picture>
     <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./assets/logo.png">
         <img src="./assets/logo.png">
     </picture>
 </h1>
