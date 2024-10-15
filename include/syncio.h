@@ -1,6 +1,6 @@
 /**
  * @author DevByEagle
- * @brief
+ * @brief Syncio is an open source C library designed for providing many different functions.
  * @file syncio.h
  * @version 1.0
  */

@@ -8,9 +8,6 @@
 
 # Syncio
 
-<!--## Features
-- -->
-
 ## Project Description
 
 Syncio is an open source C library designed for providing many different functions.
