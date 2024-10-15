@@ -1,9 +1,0 @@
-{
-    "targets": [
-        {
-            "name": "syncio",
-            "source_file": "main.cpp",
-            "build_mode": "debug"
-        }
-    ]
-}
