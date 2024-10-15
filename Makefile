@@ -1,4 +1,4 @@
-CC=clang
+CC=cc
 CFLAGS=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g
 
 SRC_DIR=src
