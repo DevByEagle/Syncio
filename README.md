@@ -1,8 +1,8 @@
-# Syncio
+<div align="center">
+    <img src="./assets/icon.png"/>
+</div>
 
-<!--<div align="center">
-    <img src="https://img.shields.io/github/license/DevByEagle/Syncio?logo=apache&color=%230095ff"/>
-</div> -->
+# Syncio
 
 <!--## Features
 - -->
