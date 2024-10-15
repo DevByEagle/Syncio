@@ -14,3 +14,16 @@ void println(string format, ...) {
  vprintf(format, args);
  va_end(args);   
 }
+
+/*int raise(FILE* stream, string format, ...) {
+    va_list args;
+    int written;
+
+    va_start(args, format);
+
+    written = vfprintf(stream, format, args);
+
+    va_end(args);
+
+    return written;
+}*/
