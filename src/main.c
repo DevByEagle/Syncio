@@ -1,11 +1,8 @@
 #include <stdio.h>
-#include "../include/types.h"
-
-bool isValued() {
-    return true;
-}
+#include "../include/syncio.h"
 
 int main() {
-    printf("%d\n", isValued());
+    delay(1);
+    printf("Hello World\n");
     return 0;
 }
