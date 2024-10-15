@@ -25,4 +25,3 @@ Before you begin, ensure you have the following installed:
 | Dependency | Version |
 | :--- | :--- |
 | **GCC** | *lastes* |
-| **json-c** | *lastes* |

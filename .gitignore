@@ -53,3 +53,7 @@ dkms.conf
 
 *.log
 *.exe
+
+# Syncio files/folders
+build/**
+syncio
