@@ -15,15 +15,11 @@ void println(string format, ...) {
  va_end(args);   
 }
 
-/*int raise(FILE* stream, string format, ...) {
+void raise(string format, ...) {
     va_list args;
-    int written;
-
     va_start(args, format);
-
-    written = vfprintf(stream, format, args);
+    
+    vfprintf(stdout, format, args);
 
     va_end(args);
-
-    return written;
-}*/
+}

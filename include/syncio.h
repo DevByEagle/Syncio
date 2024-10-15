@@ -15,6 +15,6 @@ void delay(unsigned int ms);
 /** @brief Prints Text to the Terminal. */
 void println(string format, ...);
 
-//int raise(FILE* stream, string format, ...);
+void raise(string format, ...);
 
 #endif // SYNCIO_H
