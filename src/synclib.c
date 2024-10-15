@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "../include/synclib.h"
+#include "../include/syncio.h"
 
 void* xalloc(Size_t size) {
     if (size <= 0) {

@@ -1,7 +1,7 @@
 #ifndef SYNCLIB_H
 #define SYNCLIB_H
 
-#include "syncio.h"
+#include "types.h"
 
 void* xalloc(Size_t size);
 void* xrealloc(void* ptr, Size_t new_size);

@@ -1,3 +1,4 @@
+#include "../include/syncio.h"
 #include "../include/synclib.h"
 
 int main() {
@@ -9,7 +10,7 @@ int main() {
         array[i] = i;
         println("array[%u] = %d\n", i, array[i]);
     }
-    
+
     xfree(array);  // Free the allocated memory
     return 0;
 }
