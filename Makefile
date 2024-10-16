@@ -31,5 +31,5 @@ clean:
 	@echo "(CLEAN)"
 	@rm -rf $(BUILD_DIR)
 	@rm -f $(LIB_NAME)
-
+	
 .PHONY: all clean
