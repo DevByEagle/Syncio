@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g -lstdc++
+CXXFLAGS=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g 
 
 SRC_DIR=src
 BUILD_DIR=build
@@ -10,6 +10,7 @@ HDR_DIR=include
 HDR_FILES=$(wildcard $(HDR_DIR)/**/*.h $(HDR_DIR)/*.h)
 
 LIB_NAME=libsync.so
+PREFIX=/usr/.local
 
 all: $(LIB_NAME)
 	@echo "(DONE) $@"
@@ -26,6 +27,18 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDR_FILES) | $(BUILD_DIR)
 $(BUILD_DIR):
 	@echo "(INIT)"
 	@mkdir -p $@
+
+install: $(LIB_NAME)
+	@echo "(INSTALL) Installing $<"
+	@mkdir -p $(DESTDIR)$(PREFIX)/lib
+	@cp $< $(DESTDIR)$(PREFIX)/lib
+	@mkdir -p $(DESTDIR)$(PREFIX)/include/Syncio
+	@cp $(HDR_FILES) $(DESTDIR)$(PREFIX)/include/sync
+
+uninstall:
+	@echo "(UNINSTALL) Removing $<"
+	@rm -f $(DESTDIR)$(PREFIX)/lib/$(LIB_NAME)
+	@rm -f $(DESTDIR)$(PREFIX)/include/Syncio
 
 clean:
 	@echo "(CLEAN)"
