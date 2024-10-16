@@ -9,10 +9,13 @@ namespace Syncio {
     template<typename CharT>
     class StringC {
     public:
-       StringC() : data(nullptr), length (0), isEmpty(true) {}
+       StringC() : data(nullptr), length(0), isEmpty(true) {}
+
        StringC(const CharT* initial) {
         length = std::strlen(initial);
-        data = new T[length + 1];
+        data = new CharT[length + 1];
+        std::copy(initial, initial + length, data);
+        data[length] = '\0';
        }
 
 
