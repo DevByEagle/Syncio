@@ -12,9 +12,9 @@ if not exist %BUILD_DIR% (
 )
 
 REM Compile all source files in the src directory
-for %%f in (%SRC_DIR%\*.c) do (
+for %%f in (%SRC_DIR%\*.cpp) do (
     echo Compiling %%f...
-    gcc -c -o %BUILD_DIR%\%%~nf.o %%f
+    g++ -c -o %BUILD_DIR%\%%~nf.o %%f
 )
 
 REM Archive object files into a static library
