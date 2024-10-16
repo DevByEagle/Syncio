@@ -19,6 +19,4 @@ void println(string format, ...);
 /** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
 void raise(string format, ...);
 
-char* input(string prompt);
-
 #endif // SYNCIO_H
