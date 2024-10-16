@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g
+CXXFLAGS=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g -lstdc++
 
 SRC_DIR=src
 BUILD_DIR=build
