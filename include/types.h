@@ -1,5 +1,6 @@
 #pragma once
 
-typedef enum { false, true } bool;
-typedef char* string;
-typedef unsigned long Size_t;
+namespace Syncio {
+    typedef const char* string;
+    typedef unsigned long size_t;
+}

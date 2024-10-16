@@ -10,13 +10,13 @@
 
 #include "types.h"
 
-/** @brief Delays execution for a specified duration, allowing for pauses in program flow. */
-void delay(unsigned int ms);
+namespace Syncio {
+    /** @brief Outputs a message to the console and appends a newline for better readability. */
+    void println(string format, ...);
 
-/** @brief Outputs a message to the console and appends a newline for better readability. */
-void println(string format, ...);
-
-/** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
-void raise(string format, ...);
+    /** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
+    void raise(string format, ...);
+    
+}
 
 #endif // SYNCIO_H

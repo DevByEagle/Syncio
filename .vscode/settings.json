@@ -1,6 +1,5 @@
 {
     "files.associations": {
-        ".h": "c",
-        "syncio.h": "c"
+        ".h": "cpp",
     }
 }
