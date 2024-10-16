@@ -2,5 +2,5 @@
 
 namespace Syncio {
     typedef const char* string;
-    typedef unsigned long size_t;
+    typedef unsigned long Size_t;
 }
