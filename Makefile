@@ -10,7 +10,7 @@ HDR_DIR=include
 HDR_FILES=$(wildcard $(HDR_DIR)/**/*.h $(HDR_DIR)/*.h)
 
 LIB_NAME=libsync.so
-PREFIX=/usr/.local
+PREFIX=/usr
 
 all: $(LIB_NAME)
 	@echo "(DONE) $@"
