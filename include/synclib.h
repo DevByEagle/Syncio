@@ -3,12 +3,8 @@
 
 #include "stringc.h"
 
-#ifdef __cplusplus
 namespace Syncio {
 
 }
-#else
-
-#endif
 
 #endif // SYNCLIB_H
