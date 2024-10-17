@@ -11,10 +11,9 @@
 #include "types.h"
 
 namespace Syncio {
-    namespace System {
         /** @brief Outputs a message to the console and appends a newline for better readability. */
         void println(string format, ...);
-        
+            
         /** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
         void raise(string format, ...);
     }
