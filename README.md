@@ -80,7 +80,7 @@ build.bat
 To use Syncio in your project, include the header file and link the library. Here's a simple example:
 
 ```.cpp
-#include <syncio.h>
+#include <Syncio/syncio.h>
 
 int main() {
     Syncio::println("Hello World\n"); // Prints `Hello World`
