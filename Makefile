@@ -16,7 +16,7 @@ all: $(LIB_NAME)
 	@echo "(DONE) $@"
 
 $(LIB_NAME): $(OBJ_FILES) | $(BUILD_DIR)
-	@echo "(AR) $@"
+	@echo "(LINK) $@"
 	@ar rcs $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDR_FILES) | $(BUILD_DIR)
