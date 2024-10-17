@@ -1,7 +1,7 @@
 <h1 align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/SyncioDark.png">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/Syncio/Light.png">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/SyncioLight.png">
     <img src="./assets/Syncio.png">
   </picture>
 
