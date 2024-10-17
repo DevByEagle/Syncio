@@ -1,10 +1,15 @@
 name: Build Task
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - .github/**
+      - '!.github/workflows/build.yml'
 
 jobs:
   build-linux:
