@@ -3,6 +3,6 @@
 #include "synclib.h"
 
 namespace Syncio {
-    using string = Foundation::base_string<char>;
+    using string = StringC<char>;
     typedef unsigned long Size_t;
 }
