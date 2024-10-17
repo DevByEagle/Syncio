@@ -38,7 +38,7 @@ install: $(LIB_NAME)
 uninstall:
 	@echo "(UNINSTALL) Removing $<"
 	@rm -f $(DESTDIR)$(PREFIX)/lib/$(LIB_NAME)
-	@rm -f $(DESTDIR)$(PREFIX)/include/Syncio
+	@rm -rf $(DESTDIR)$(PREFIX)/include/Syncio
 
 clean:
 	@echo "(CLEAN)"
