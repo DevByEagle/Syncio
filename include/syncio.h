@@ -16,9 +16,6 @@ namespace Syncio {
 
     /** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
     void raise(string format, ...);
-
-    template <typename T>
-    T clamp(T value, T min, T max);
 }
 
 #endif // SYNCIO_H
