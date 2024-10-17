@@ -16,6 +16,8 @@ namespace Syncio {
 
     /** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
     void raise(string format, ...);
+
+    void* xalloc(
 }
 
 #endif // SYNCIO_H
