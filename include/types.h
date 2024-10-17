@@ -1,6 +1,6 @@
 #pragma once
 
-#include "libs/stringc.h"
+#include "synclib.h"
 
 namespace Syncio {
     using string = Syncio::StringC<char>;
