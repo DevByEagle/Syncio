@@ -1,7 +1,8 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/logo.png">
-    <img src="./assets/logo.png">
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/SyncioDark.png">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/Syncio/Light.png">
+    <img src="./assets/Syncio.png">
   </picture>
 
   <!--[![GitHub release](https://img.shields.io/github/v/release/RyanLua/Shime?logo=roblox&color=2db74c)](https://github.com/RyanLua/Shime/releases)
