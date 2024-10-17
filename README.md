@@ -1,6 +1,6 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/80087248/229268959-a3cb2881-3022-4acf-afc5-b6007e94ff3d.png">
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/logo.png">
     <img src="./assets/logo.png">
   </picture>
 
