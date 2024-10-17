@@ -1,3 +1,5 @@
 #pragma once
 
-#include "libs/stringc.h"
+#ifdef __linux__
+#include <Syncio/stringc.h>
+#endif
