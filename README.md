@@ -49,6 +49,10 @@ make
 ```.sh
 sudo make install
 ```
+3. Compiling code:
+```.sh
+g++ main.cpp -o <output_name> -lsync -lstdc++ # You Need to use -lstdc++ or else it will not work
+``` 
 
 ### Building on Windows
 
