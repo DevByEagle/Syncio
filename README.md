@@ -1,10 +1,17 @@
 <h1 align="center">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="./assets/logo.png">
-        <img src="./assets/logo.png">
-    </picture>
-</h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/80087248/229268959-a3cb2881-3022-4acf-afc5-b6007e94ff3d.png">
+    <img src="./assets/logo.png">
+  </picture>
 
+  <!--[![GitHub release](https://img.shields.io/github/v/release/RyanLua/Shime?logo=roblox&color=2db74c)](https://github.com/RyanLua/Shime/releases)
+  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Shime?logo=lua&color=2db74c)](https://github.com/search?q=repo%3ARyanLua%2FShime++language%3ALua&type=code) -->
+  [![GitHub license](https://img.shields.io/github/license/DevByEagle/Syncio?logo=apache&color=2db74c)](LICENSE)
+  [![Lint](https://github.com/RyanLua/Shime/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanLua/Shime/actions/workflows/CI.yml)
+
+  <!-- [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RyanLua/Shime?quickstart=1) -->
+
+</h1>
 # Syncio
 
 ## Project Description
