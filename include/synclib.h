@@ -1,13 +1,14 @@
 #ifndef SYNCLIB_H
 #define SYNCLIB_H
 
-#include "libs/stringc.h"
+#include "stringc.h"
 
+#ifdef __cplusplus
 namespace Syncio {
-    template <typename T>
-    class ArrayLite {
 
-    };
 }
+#else
+
+#endif
 
 #endif // SYNCLIB_H

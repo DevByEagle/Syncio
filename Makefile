@@ -1,28 +1,51 @@
-CXX=g++
-CXXFLAGS=-Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g 
+ifeq ($(shell uname), Darwin)
+    CXX = clang++
+    CC = clang
+else
+    CXX = g++
+    CC = gcc
+endif
 
-SRC_DIR=src
-BUILD_DIR=build
-SRC_FILES=$(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
-OBJ_FILES=$(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
+# Compiler flags
+CFLAGS = -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g -fPIC
 
-HDR_DIR=include
-HDR_FILES=$(wildcard $(HDR_DIR)/**/*.h $(HDR_DIR)/*.h)
+# Directories
+SRC_DIR = src
+BUILD_DIR = build
+HDR_DIR = include
+PREFIX = /usr
 
-LIB_NAME=libsync.so
-PREFIX=/usr
+# Source files
+CXX_SRC_FILES = $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
+C_SRC_FILES = $(wildcard $(SRC_DIR)/**/*.c $(SRC_DIR)/*.c)
+
+# Object files
+CXX_OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(CXX_SRC_FILES))
+C_OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(C_SRC_FILES))
+OBJ_FILES = $(CXX_OBJ_FILES) $(C_OBJ_FILES)
+
+# Header files
+HDR_FILES = $(wildcard $(HDR_DIR)/**/*.h $(HDR_DIR)/*.h)
+
+# Library name
+LIB_NAME = libsync.so
 
 all: $(LIB_NAME)
 	@echo "(DONE) $@"
 
 $(LIB_NAME): $(OBJ_FILES) | $(BUILD_DIR)
-	@echo "(AR) $@"
-	@ar rcs $@ $^
+	@echo "(LINK) $@"
+	@$(CXX) -shared -o $@ $^
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp $(HDR_FILES) | $(BUILD_DIR)
-	@echo "(COMP) $@"
+	@echo "(COMP) $<"
 	@mkdir -p $(dir $@)
-	@$(CXX) $(CXXFLAGS) -I$(HDR_DIR) -c -o $@ $<
+	@$(CXX) $(CFLAGS) -I$(HDR_DIR) -c -o $@ $<
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(HDR_FILES) | $(BUILD_DIR)
+	@echo "(COMP) $<"
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -I$(HDR_DIR) -c -o $@ $<
 
 $(BUILD_DIR):
 	@echo "(INIT)"
@@ -44,5 +67,5 @@ clean:
 	@echo "(CLEAN)"
 	@rm -rf $(BUILD_DIR)
 	@rm -f $(LIB_NAME)
-	
-.PHONY: all clean
+
+.PHONY: all clean install uninstall
