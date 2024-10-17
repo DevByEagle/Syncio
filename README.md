@@ -36,6 +36,7 @@ To install Syncio, follow these steps:
 ```.sh
 cd Syncio
 ```
+
 ### Building on Linux
 
 For Linux, use the following commands to build the library:
@@ -44,7 +45,7 @@ For Linux, use the following commands to build the library:
 ```.sh
 make
 ```
-2. Install headers and lib file:
+2. Install headers and the lib file:
 ```.sh
 sudo make install
 ```
