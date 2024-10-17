@@ -4,6 +4,10 @@
 #include "libs/stringc.h"
 
 namespace Syncio {
+    template <typename T>
+    class ArrayLite {
+
+    };
 }
 
 #endif // SYNCLIB_H
