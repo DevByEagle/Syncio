@@ -7,11 +7,12 @@
   <!--[![GitHub release](https://img.shields.io/github/v/release/RyanLua/Shime?logo=roblox&color=2db74c)](https://github.com/RyanLua/Shime/releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Shime?logo=lua&color=2db74c)](https://github.com/search?q=repo%3ARyanLua%2FShime++language%3ALua&type=code) -->
   [![GitHub license](https://img.shields.io/github/license/DevByEagle/Syncio?logo=apache&color=2db74c)](LICENSE)
-  [![Lint](https://github.com/RyanLua/Shime/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanLua/Shime/actions/workflows/CI.yml)
+  [![Lint](https://github.com/DevByEagle/Syncio/actions/workflows/build.yml/badge.svg)](https://github.com/DevByEagle/Syncio/actions/workflows/build.yml)
 
   <!-- [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RyanLua/Shime?quickstart=1) -->
 
 </h1>
+
 # Syncio
 
 ## Project Description
