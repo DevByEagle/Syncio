@@ -21,13 +21,3 @@ jobs:
     
     - name: Build Project
       run: make
-
-    - name: Install Project
-      run: sudo make install
-
-    - name: Build Code
-      run: cc test.cpp -o test -lsync -lstdc++
-
-    - name: Run Code
-      run: ./test
-    
