@@ -33,7 +33,7 @@ install: $(LIB_NAME)
 	@mkdir -p $(DESTDIR)$(PREFIX)/lib
 	@cp $< $(DESTDIR)$(PREFIX)/lib
 	@mkdir -p $(DESTDIR)$(PREFIX)/include/Syncio
-	@cp $(HDR_FILES) $(DESTDIR)$(PREFIX)/include/sync
+	@cp $(HDR_FILES) $(DESTDIR)$(PREFIX)/include/Syncio
 
 uninstall:
 	@echo "(UNINSTALL) Removing $<"
