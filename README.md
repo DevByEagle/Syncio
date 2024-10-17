@@ -20,7 +20,7 @@ Syncio is an open source C++ library designed for providing many different funct
 
 ## Features
 
-- **Performance**: This is a lightweight library designed to efficiently perform operations on strings.
+- **Performance**: This is a lightweight library designed to efficiently perform.
 
 ## Prerequisites
 
