@@ -12,3 +12,8 @@ T* Syncio::xalloc(Size_t count) {
   }
   return ptr;
 }
+
+template <typename T>
+void Syncio::xfree(T* ptr) {
+  std::free(ptr);
+}
