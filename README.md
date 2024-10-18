@@ -28,7 +28,8 @@ Before you begin, ensure you have the following installed:
 
 | Dependency | Version |
 | :--- | :--- |
-| **build-essential** | *latest* |
+| **Clang** | *latest* |
+| **Make** | *latest* |
 
 ## Installation
 
