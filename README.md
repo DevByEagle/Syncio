@@ -28,7 +28,7 @@ Before you begin, ensure you have the following installed:
 
 | Dependency | Version |
 | :--- | :--- |
-| **gcc** | *latest* |
+| **GCC** | *latest* |
 | **Make** | *latest* |
 
 ## Installation
