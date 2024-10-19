@@ -16,7 +16,7 @@
 
 ## Project Description
 
-Syncio is an open source C++ library designed for providing many different functions. It offers a lightweight cross-platform solution.
+Syncio is an open source C/C++ library designed for providing many different functions. It offers a lightweight cross-platform solution.
 
 ## Features
 
@@ -28,7 +28,7 @@ Before you begin, ensure you have the following installed:
 
 | Dependency | Version |
 | :--- | :--- |
-| **Clang** | *latest* |
+| **G++** | *latest* |
 | **Make** | *latest* |
 
 ## Installation
