@@ -1,5 +1,3 @@
-name: Build Task
-
 on:
   pull_request:
     branches: [ "master" ]
@@ -21,3 +19,22 @@ jobs:
     
     - name: Build Project
       run: make
+
+  build-windows:
+    name: Windows Build
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install MSYS2 and MinGW
+      run: |
+        choco install msys2
+        msys2 -c "pacman -Sy --noconfirm mingw-w64-x86_64-gcc"
+    
+    - name: Add MinGW to PATH
+      run: |
+        echo "C:\tools\msys64\mingw64\bin" >> $env:GITHUB_PATH
+    
+    - name: Build Project 
+      run: build.bat
