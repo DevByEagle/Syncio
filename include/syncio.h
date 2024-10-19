@@ -12,7 +12,7 @@ void println(const char* format, ...);
 
  /** @brief Triggers an error, throwing an exception or terminating the program with a specified message. */
 void raise(const char* format, ...);
- 
+
 #ifdef __cplusplus
 }
 #endif
