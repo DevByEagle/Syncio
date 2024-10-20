@@ -1,6 +1,7 @@
 #ifndef SYNCIO_H
 #define SYNCIO_H
 
+#include <stdbool.h>
 #include "types.h"
 
 #ifdef __cplusplus
