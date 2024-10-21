@@ -84,7 +84,7 @@ To use Syncio in your project, include the header file and link the library. Her
 #include <Syncio/syncio.h>
 
 int main() {
-    Syncio::println("Hello World\n"); // Prints `Hello World`
+    println("Hello World\n"); // Prints `Hello World`
     return 0;
 }
 ```
