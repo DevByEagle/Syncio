@@ -49,11 +49,7 @@ mkdir build
 
 For Linux, use the following commands to build the library:
 
-1. **Initialize CMake:**
-```.sh
-cmake -S . -B build
-```
-2. **Run the build command:**
+1. **Run the build command:**
 ```.sh
 cmake --build build/
 ```
