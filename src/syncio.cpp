@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <cstdarg>
-#include <string>
 #include <unistd.h>
 
 #include "../include/syncio.h"

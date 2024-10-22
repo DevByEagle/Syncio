@@ -1,7 +1,6 @@
 #ifndef SYNCIO_H
 #define SYNCIO_H
 
-#include <stdbool.h>
 #include "types.h"
 
 #ifdef __cplusplus
@@ -15,8 +14,6 @@ void println(const char* format, ...);
 void raise(const char* format, ...);
 
 void delay(unsigned int second);
-
-bool isword(char c);
 
 #ifdef __cplusplus
 }
