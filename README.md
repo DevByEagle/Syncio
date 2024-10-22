@@ -28,8 +28,7 @@ Before you begin, ensure you have the following installed:
 
 | Dependency | Version |
 | :--- | :--- |
-| **GCC** | *latest* |
-| **Make** | *latest* |
+| **CMake** | *latest* |
 
 ## Installation
 
@@ -43,6 +42,7 @@ To install Syncio, follow these steps:
 2. **Navigate to the project directory:**
 ```.sh
 cd Syncio
+mkdir build
 ```
 
 ### Building on Linux
@@ -51,16 +51,12 @@ For Linux, use the following commands to build the library:
 
 1. Run the build command:
 ```.sh
-make
+cmake --build build/
 ```
 2. Install headers and the lib file:
 ```.sh
-sudo make install
+sudo cmake --install .
 ```
-3. Compiling code:
-```.sh
-g++ main.cpp -o <output_name> -lsync -lstdc++ # You Need to use -lstdc++ or else it will not work
-``` 
 
 ### Building on Windows
 
