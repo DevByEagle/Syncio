@@ -19,5 +19,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
+    - name: Initialize CMake
+      run: |
+        mkdir build
+        cmake -S . -B build
+
     - name: Build Project
-      run: make
+      run: cmake --build build/
