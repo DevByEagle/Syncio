@@ -25,3 +25,7 @@ void raise(const char* format, ...) {
 void delay(unsigned int second) {
     sleep(second);
 }
+
+bool isword(char c) {
+    return isalpha(c);
+}
