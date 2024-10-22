@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <ctype.h>
 #include <unistd.h>
 
 #include "../include/syncio.h"
