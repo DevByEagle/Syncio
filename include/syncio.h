@@ -10,6 +10,10 @@ extern "C" {
 /** @brief Outputs a message to the console and appends a newline for better readability. */
 void println(const char* format, ...);
 
+void raise(const char* format, ...);
+
+void delay(unsigned int seconds);
+
 #ifdef __cplusplus
 }
 #endif
