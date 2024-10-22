@@ -16,6 +16,8 @@ void raise(const char* format, ...);
 
 void delay(unsigned int second);
 
+bool isword(char c);
+
 #ifdef __cplusplus
 }
 #endif
